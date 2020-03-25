@@ -14,6 +14,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     procedure UpdateTime();
@@ -74,6 +76,13 @@ begin
         lblTime.Font.Size:=lblTime.Font.Size-1;
   end;
 
+end;
+
+procedure TForm1.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  ReleaseCapture; 
+  PostMessage(Self.Handle,WM_SYSCOMMAND,SC_MOVE+1,0)
 end;
 
 end.

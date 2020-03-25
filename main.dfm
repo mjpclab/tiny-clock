@@ -4,7 +4,7 @@ object Form1: TForm1
   AlphaBlend = True
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsDialog
+  BorderStyle = bsNone
   Caption = 'Clock'
   ClientHeight = 149
   ClientWidth = 700
@@ -19,6 +19,7 @@ object Form1: TForm1
   Position = poScreenCenter
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnMouseDown = FormMouseDown
   PixelsPerInch = 120
   TextHeight = 17
   object lblTime: TLabel
@@ -38,6 +39,7 @@ object Form1: TForm1
     ShowAccelChar = False
     Transparent = True
     Layout = tlCenter
+    OnMouseDown = FormMouseDown
   end
   object timer: TTimer
     Interval = 500
