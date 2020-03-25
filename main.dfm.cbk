@@ -4,7 +4,7 @@ object Form1: TForm1
   AlphaBlend = True
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsDialog
+  BorderStyle = bsNone
   Caption = 'Clock'
   ClientHeight = 149
   ClientWidth = 700
