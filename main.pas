@@ -16,9 +16,11 @@ type
       Shift: TShiftState);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
     procedure UpdateTime();
+    procedure UpdateWinRgb();
   public
     { Public declarations }
   end;
@@ -35,14 +37,32 @@ begin
   lblTime.Caption:=FormatDateTime(' hh:mm:ss ', Now());
 end;
 
-procedure TForm1.timerTimer(Sender: TObject);
+procedure TForm1.UpdateWinRgb;
+var
+  roundRgn: THandle;
+  r: integer;
 begin
-  UpdateTime();
+  r:=Round(self.Height * 0.13);
+  roundRgn:=CreateRoundRectRgn(0, 0, self.Width, self.Height, r, r);
+  if roundRgn <> 0 then begin
+    SetwindowRgn(self.handle, roundRgn, true)
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   self.DoubleBuffered:=true;
+  UpdateWinRgb();
+  UpdateTime();
+end;
+
+procedure TForm1.FormResize(Sender: TObject);
+begin
+  UpdateWinRgb();
+end;
+
+procedure TForm1.timerTimer(Sender: TObject);
+begin
   UpdateTime();
 end;
 
@@ -70,10 +90,13 @@ begin
           self.AlphaBlendValue:=255
       end;
     38: // up
+      begin
         lblTime.Font.Size:=lblTime.Font.Size+1;
+      end;
     40: // down
-      if lblTime.Font.Size > 5 then
+      if lblTime.Font.Size > 5 then begin
         lblTime.Font.Size:=lblTime.Font.Size-1;
+      end;
   end;
 
 end;

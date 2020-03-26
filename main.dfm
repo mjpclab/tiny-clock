@@ -20,6 +20,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
+  OnResize = FormResize
   PixelsPerInch = 120
   TextHeight = 17
   object lblTime: TLabel
