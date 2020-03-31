@@ -20,7 +20,7 @@ type
     { Private declarations }
     procedure UpdateLayout;
     procedure UpdateTime;
-    procedure UpdateWinRgb;
+    procedure UpdateWinRgn;
   public
     { Public declarations }
   end;
@@ -43,7 +43,7 @@ begin
   lblTime.Left:=Round(lblTime.Font.Size/2);
 end;
 
-procedure TfrmMain.UpdateWinRgb;
+procedure TfrmMain.UpdateWinRgn;
 var
   roundRgn: THandle;
   r: integer;
@@ -64,7 +64,7 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   self.DoubleBuffered:=true;
   UpdateLayout();
-  UpdateWinRgb();
+  UpdateWinRgn();
   UpdateTime();
 end;
 
@@ -97,13 +97,13 @@ begin
       begin
         lblTime.Font.Size:=lblTime.Font.Size+1;
         UpdateLayout();
-        UpdateWinRgb();
+        UpdateWinRgn();
       end;
     40: // down
       if lblTime.Font.Size > 5 then begin
         lblTime.Font.Size:=lblTime.Font.Size-1;
         UpdateLayout();
-        UpdateWinRgb();
+        UpdateWinRgn();
       end;
   end;
 
