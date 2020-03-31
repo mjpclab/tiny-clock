@@ -16,11 +16,11 @@ type
       Shift: TShiftState);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
-    procedure UpdateTime();
-    procedure UpdateWinRgb();
+    procedure UpdateLayout;
+    procedure UpdateTime;
+    procedure UpdateWinRgb;
   public
     { Public declarations }
   end;
@@ -32,9 +32,16 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.UpdateTime();
+procedure TForm1.UpdateLayout;
+var
+  newWidth, newHeight : integer;
+  newLeft, newTop : Integer;
 begin
-  lblTime.Caption:=FormatDateTime(' hh:mm:ss ', Now());
+  newWidth := lblTime.Width + lblTime.Font.Size;
+  newHeight := lblTime.Height;
+  MoveWindow(self.Handle, Left, Top, newWidth, newHeight, False);
+
+  lblTime.Left:=Round(lblTime.Font.Size/2);
 end;
 
 procedure TForm1.UpdateWinRgb;
@@ -49,16 +56,17 @@ begin
   end;
 end;
 
+procedure TForm1.UpdateTime();
+begin
+  lblTime.Caption:=FormatDateTime('hh:mm:ss', Now());
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   self.DoubleBuffered:=true;
+  UpdateLayout();
   UpdateWinRgb();
   UpdateTime();
-end;
-
-procedure TForm1.FormResize(Sender: TObject);
-begin
-  UpdateWinRgb();
 end;
 
 procedure TForm1.timerTimer(Sender: TObject);
@@ -92,10 +100,14 @@ begin
     38: // up
       begin
         lblTime.Font.Size:=lblTime.Font.Size+1;
+        UpdateLayout();
+        UpdateWinRgb();
       end;
     40: // down
       if lblTime.Font.Size > 5 then begin
         lblTime.Font.Size:=lblTime.Font.Size-1;
+        UpdateLayout();
+        UpdateWinRgb();
       end;
   end;
 

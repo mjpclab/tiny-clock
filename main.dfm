@@ -1,13 +1,12 @@
 object Form1: TForm1
-  Left = 246
-  Top = 156
+  Left = 224
+  Top = 147
   AlphaBlend = True
-  AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Clock'
   ClientHeight = 149
-  ClientWidth = 700
+  ClientWidth = 560
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,15 +19,14 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
-  OnResize = FormResize
   PixelsPerInch = 120
   TextHeight = 17
   object lblTime: TLabel
     Left = 0
     Top = 0
-    Width = 700
+    Width = 560
     Height = 149
-    Caption = ' 00:00:00 '
+    Caption = '00:00:00'
     Color = clNone
     Font.Charset = ANSI_CHARSET
     Font.Color = clLime
