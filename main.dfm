@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmMain: TfrmMain
   Left = 224
   Top = 147
   AlphaBlend = True

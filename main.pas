@@ -7,7 +7,7 @@ uses
   ExtCtrls, StdCtrls  ;
 
 type
-  TForm1 = class(TForm)
+  TfrmMain = class(TForm)
     timer: TTimer;
     lblTime: TLabel;
     procedure timerTimer(Sender: TObject);
@@ -26,16 +26,15 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmMain: TfrmMain;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.UpdateLayout;
+procedure TfrmMain.UpdateLayout;
 var
   newWidth, newHeight : integer;
-  newLeft, newTop : Integer;
 begin
   newWidth := lblTime.Width + lblTime.Font.Size;
   newHeight := lblTime.Height;
@@ -44,7 +43,7 @@ begin
   lblTime.Left:=Round(lblTime.Font.Size/2);
 end;
 
-procedure TForm1.UpdateWinRgb;
+procedure TfrmMain.UpdateWinRgb;
 var
   roundRgn: THandle;
   r: integer;
@@ -56,12 +55,12 @@ begin
   end;
 end;
 
-procedure TForm1.UpdateTime();
+procedure TfrmMain.UpdateTime();
 begin
   lblTime.Caption:=FormatDateTime('hh:mm:ss', Now());
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   self.DoubleBuffered:=true;
   UpdateLayout();
@@ -69,16 +68,13 @@ begin
   UpdateTime();
 end;
 
-procedure TForm1.timerTimer(Sender: TObject);
+procedure TfrmMain.timerTimer(Sender: TObject);
 begin
   UpdateTime();
 end;
 
-procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
-var
-  step:integer;
-  value:integer;
 begin
   case Key of
     27: // ESC
@@ -113,7 +109,7 @@ begin
 
 end;
 
-procedure TForm1.FormMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TfrmMain.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   ReleaseCapture; 
