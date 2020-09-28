@@ -2,7 +2,8 @@ program clock;
 
 uses
   Forms,
-  main in 'main.pas' {frmMain};
+  main in 'main.pas' {frmMain},
+  timeMan in 'timeMan.pas';
 
 {$R *.res}
 

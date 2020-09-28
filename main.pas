@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  ExtCtrls, StdCtrls  ;
+  ExtCtrls, StdCtrls, timeMan;
 
 type
   TfrmMain = class(TForm)
@@ -17,6 +17,7 @@ type
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
   private
+    timeManager:TTimeManager;
     { Private declarations }
     procedure UpdateLayout;
     procedure UpdateTime;
@@ -29,6 +30,7 @@ var
   frmMain: TfrmMain;
 
 implementation
+
 
 {$R *.dfm}
 
@@ -56,12 +58,18 @@ begin
 end;
 
 procedure TfrmMain.UpdateTime();
+var
+  str:string;
 begin
-  lblTime.Caption:=FormatDateTime('hh:mm:ss', Now());
+  str:=self.timeManager.GetHhMmSs;
+  if Length(str)>0 then begin
+    lblTime.Caption:=str;
+  end;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  self.timeManager:=TTimeManager.Create;
   self.DoubleBuffered:=true;
   UpdateLayout();
   UpdateWinRgn();

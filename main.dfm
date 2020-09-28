@@ -1,16 +1,16 @@
 object frmMain: TfrmMain
-  Left = 224
-  Top = 147
+  Left = 229
+  Top = 139
   AlphaBlend = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Clock'
-  ClientHeight = 149
-  ClientWidth = 560
+  ClientHeight = 108
+  ClientWidth = 428
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsStayOnTop
@@ -19,18 +19,18 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
-  PixelsPerInch = 120
-  TextHeight = 17
+  PixelsPerInch = 96
+  TextHeight = 13
   object lblTime: TLabel
     Left = 0
     Top = 0
-    Width = 560
-    Height = 149
+    Width = 424
+    Height = 113
     Caption = '00:00:00'
     Color = clNone
     Font.Charset = ANSI_CHARSET
     Font.Color = clLime
-    Font.Height = -127
+    Font.Height = -97
     Font.Name = 'Consolas'
     Font.Style = []
     ParentColor = False
@@ -41,9 +41,9 @@ object frmMain: TfrmMain
     OnMouseDown = FormMouseDown
   end
   object timer: TTimer
-    Interval = 500
+    Interval = 250
     OnTimer = timerTimer
-    Left = 16
-    Top = 112
+    Left = 296
+    Top = 8
   end
 end
