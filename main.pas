@@ -16,14 +16,19 @@ type
       Shift: TShiftState);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure CMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
   private
     timeManager:TTimeManager;
     { Private declarations }
     procedure UpdateLayout;
     procedure UpdateTime;
     procedure UpdateWinRgn;
+  protected
+    FOnMouseLeave: TNotifyEvent;
   public
     { Public declarations }
+  published
+    property OnMouseLeave:TNotifyEvent read FOnMouseLeave write FOnMouseLeave;
   end;
 
 var
@@ -122,6 +127,12 @@ procedure TfrmMain.FormMouseDown(Sender: TObject; Button: TMouseButton;
 begin
   ReleaseCapture; 
   PostMessage(Self.Handle,WM_SYSCOMMAND,SC_MOVE+1,0)
+end;
+
+procedure TfrmMain.CMMouseLeave(var Message: TMessage);
+begin
+  if Assigned(Self.OnMouseLeave) then
+    Self.OnMouseLeave(Self);
 end;
 
 end.

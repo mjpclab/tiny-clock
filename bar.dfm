@@ -1,0 +1,29 @@
+object frmBar: TfrmBar
+  Left = 294
+  Top = 131
+  AlphaBlend = True
+  AlphaBlendValue = 1
+  BorderStyle = bsNone
+  Caption = 'frmBar'
+  ClientHeight = 346
+  ClientWidth = 551
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnMouseMove = FormMouseMove
+  PixelsPerInch = 96
+  TextHeight = 13
+  object timerHideMainForm: TTimer
+    Enabled = False
+    Interval = 200
+    OnTimer = timerHideMainFormTimer
+    Left = 40
+    Top = 24
+  end
+end

@@ -1,7 +1,8 @@
 object frmMain: TfrmMain
-  Left = 229
-  Top = 139
+  Left = 180
+  Top = 110
   AlphaBlend = True
+  AlphaBlendValue = 192
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Clock'
@@ -15,7 +16,6 @@ object frmMain: TfrmMain
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
-  Position = poScreenCenter
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
@@ -24,13 +24,13 @@ object frmMain: TfrmMain
   object lblTime: TLabel
     Left = 0
     Top = 0
-    Width = 424
-    Height = 113
+    Width = 208
+    Height = 56
     Caption = '00:00:00'
     Color = clNone
     Font.Charset = ANSI_CHARSET
     Font.Color = clLime
-    Font.Height = -97
+    Font.Height = -48
     Font.Name = 'Consolas'
     Font.Style = []
     ParentColor = False
