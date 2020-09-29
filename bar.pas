@@ -6,20 +6,23 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, main, ExtCtrls;
 
+const hideDelayMax=5;
+const showHideStep=5;
+
 type
   TfrmBar = class(TForm)
-    timerHideMainForm: TTimer;
+    timerShowHide: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
-    procedure timerHideMainFormTimer(Sender: TObject);
+    procedure timerShowHideTimer(Sender: TObject);
   private
+    isShowMainForm: Boolean;
+    hideDelayCount:integer;
     frmMain:TfrmMain;
     procedure CreateMainForm;
-    procedure ShowMainForm;
-    procedure HideMainForm;
-    procedure OnMainFormResize(Sender: TObject);
-    procedure OnMainFormMouseLeave(Sender: TObject);
+    procedure ToggleMainForm;
+    procedure MainFormMouseLeave(Sender: TObject);
     procedure CMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
     { Private declarations }
   public
@@ -31,45 +34,16 @@ var
 
 implementation
 
+uses Math;
+
 {$R *.dfm}
 
 procedure TfrmBar.CreateMainForm;
 begin
   Self.frmMain:=TFrmMain.Create(self);
-  Self.frmMain.OnResize:=Self.OnMainFormResize;
-  Self.frmMain.OnResize(Self.frmMain);
-  Self.frmMain.OnMouseLeave:=Self.OnMainFormMouseLeave;
-end;
-
-procedure TfrmBar.OnMainFormResize(Sender: TObject);
-begin
-  Self.frmMain.top:=0;
-  Self.frmMain.left:=screen.width-Self.frmMain.width;
-end;
-
-procedure TfrmBar.OnMainFormMouseLeave(Sender: TObject);
-begin
-    self.timerHideMainForm.Enabled:=false;
-    self.timerHideMainForm.Enabled:=true;
-end;
-
-procedure TfrmBar.CMMouseLeave(var Message: TMessage);
-begin
-  if (Self.frmMain<>nil) then begin
-    self.timerHideMainForm.Enabled:=false;
-    self.timerHideMainForm.Enabled:=true;
-  end;
-end;
-
-procedure TfrmBar.ShowMainForm;
-begin
+  Self.frmMain.OnMouseLeave:=Self.MainFormMouseLeave;
+  Self.frmMain.Top:=-Self.frmMain.Height;
   Self.frmMain.Show;
-  Self.SetFocus;
-end;
-
-procedure TfrmBar.HideMainForm;
-begin
-  Self.frmMain.Hide;
 end;
 
 procedure TfrmBar.FormCreate(Sender: TObject);
@@ -88,17 +62,49 @@ end;
 procedure TfrmBar.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  timerHideMainForm.Enabled:=false;
   if Self.frmMain=nil then Self.CreateMainForm;
-  if Self.frmMain.Visible=false then begin
-    Self.ShowMainForm;
-  end;
+  isShowMainForm:=true;
+  Self.ToggleMainForm;
 end;
 
-procedure TfrmBar.timerHideMainFormTimer(Sender: TObject);
+procedure TfrmBar.CMMouseLeave(var Message: TMessage);
 begin
-  self.HideMainForm;
-  self.timerHideMainForm.Enabled:=false;
+  isShowMainForm:=false;
+  self.ToggleMainForm;
+end;
+
+procedure TfrmBar.MainFormMouseLeave(Sender: TObject);
+begin
+  isShowMainForm:=false;
+  self.ToggleMainForm;
+end;
+
+procedure TfrmBar.ToggleMainForm;
+begin
+  timerShowHide.Enabled:=false;
+  timerShowHide.Enabled:=true;
+end;
+
+procedure TfrmBar.timerShowHideTimer(Sender: TObject);
+begin
+  if isShowMainForm then begin
+    hideDelayCount:=0;
+    if frmMain.Top < -frmMain.Height/2 then
+      frmMain.Top:=Floor(-frmMain.Height/2)
+    else if frmMain.Top<0 then
+      frmMain.Top:=Min(0,frmMain.Top+showHideStep)
+    else
+      timerShowHide.Enabled:=false;
+  end else begin
+    if frmMain.Top<0 then hideDelayCount:=hideDelayMax;
+
+    if hideDelayCount<hideDelayMax then
+      Inc(hideDelayCount)
+    else if frmMain.Top>-frmMain.Height then
+      frmMain.Top:=frmMain.Top-showHideStep
+    else
+      timerShowHide.Enabled:=false;
+  end;
 end;
 
 end.

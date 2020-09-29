@@ -1,12 +1,12 @@
 object frmMain: TfrmMain
-  Left = 180
-  Top = 110
+  Left = 277
+  Top = 156
   AlphaBlend = True
   AlphaBlendValue = 192
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsNone
   Caption = 'Clock'
-  ClientHeight = 108
+  ClientHeight = 22
   ClientWidth = 428
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -17,20 +17,20 @@ object frmMain: TfrmMain
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   OnCreate = FormCreate
-  OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
   PixelsPerInch = 96
   TextHeight = 13
   object lblTime: TLabel
-    Left = 0
+    Left = 313
     Top = 0
-    Width = 208
-    Height = 56
+    Width = 80
+    Height = 22
+    Align = alRight
     Caption = '00:00:00'
     Color = clNone
     Font.Charset = ANSI_CHARSET
-    Font.Color = clLime
-    Font.Height = -48
+    Font.Color = clWhite
+    Font.Height = -19
     Font.Name = 'Consolas'
     Font.Style = []
     ParentColor = False
@@ -39,6 +39,28 @@ object frmMain: TfrmMain
     Transparent = True
     Layout = tlCenter
     OnMouseDown = FormMouseDown
+  end
+  object pnlPadLeft: TPanel
+    Left = 0
+    Top = 0
+    Width = 35
+    Height = 22
+    Align = alLeft
+    BevelOuter = bvNone
+    Caption = 'pnlPadLeft'
+    Color = clNone
+    TabOrder = 0
+  end
+  object pnlPadRight: TPanel
+    Left = 393
+    Top = 0
+    Width = 35
+    Height = 22
+    Align = alRight
+    BevelOuter = bvNone
+    Caption = 'pnlPadLeft'
+    Color = clNone
+    TabOrder = 1
   end
   object timer: TTimer
     Interval = 250

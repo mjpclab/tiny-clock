@@ -1,6 +1,6 @@
 object frmBar: TfrmBar
-  Left = 294
-  Top = 131
+  Left = 252
+  Top = 160
   AlphaBlend = True
   AlphaBlendValue = 1
   BorderStyle = bsNone
@@ -19,10 +19,10 @@ object frmBar: TfrmBar
   OnMouseMove = FormMouseMove
   PixelsPerInch = 96
   TextHeight = 13
-  object timerHideMainForm: TTimer
+  object timerShowHide: TTimer
     Enabled = False
-    Interval = 200
-    OnTimer = timerHideMainFormTimer
+    Interval = 35
+    OnTimer = timerShowHideTimer
     Left = 40
     Top = 24
   end
