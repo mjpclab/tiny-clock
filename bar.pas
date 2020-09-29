@@ -40,6 +40,7 @@ uses Math;
 
 procedure TfrmBar.CreateMainForm;
 begin
+  self.DoubleBuffered:=true;
   Self.frmMain:=TFrmMain.Create(self);
   Self.frmMain.OnMouseLeave:=Self.MainFormMouseLeave;
   Self.frmMain.Top:=-Self.frmMain.Height;
