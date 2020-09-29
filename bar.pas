@@ -40,7 +40,6 @@ uses Math;
 
 procedure TfrmBar.CreateMainForm;
 begin
-  self.DoubleBuffered:=true;
   Self.frmMain:=TFrmMain.Create(self);
   Self.frmMain.OnMouseLeave:=Self.MainFormMouseLeave;
   Self.frmMain.Top:=-Self.frmMain.Height;
@@ -64,20 +63,26 @@ procedure TfrmBar.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
   if Self.frmMain=nil then Self.CreateMainForm;
-  isShowMainForm:=true;
-  Self.ToggleMainForm;
+  if isShowMainForm=false then begin
+    isShowMainForm:=true;
+    Self.ToggleMainForm;
+  end;
 end;
 
 procedure TfrmBar.CMMouseLeave(var Message: TMessage);
 begin
-  isShowMainForm:=false;
-  self.ToggleMainForm;
+  if isShowMainForm=true then begin
+    isShowMainForm:=false;
+    self.ToggleMainForm;
+  end;
 end;
 
 procedure TfrmBar.MainFormMouseLeave(Sender: TObject);
 begin
-  isShowMainForm:=false;
-  self.ToggleMainForm;
+  if isShowMainForm=true then begin
+    isShowMainForm:=false;
+    self.ToggleMainForm;
+  end;
 end;
 
 procedure TfrmBar.ToggleMainForm;
