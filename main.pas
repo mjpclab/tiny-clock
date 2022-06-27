@@ -38,11 +38,11 @@ procedure TfrmMain.UpdateLayout;
 var
   newWidth, newHeight : integer;
 begin
-  newWidth := lblTime.Width + lblTime.Font.Size;
+  newWidth := lblTime.Width + (lblTime.Font.Size shr 1);
   newHeight := lblTime.Height;
   MoveWindow(self.Handle, Left, Top, newWidth, newHeight, False);
 
-  lblTime.Left:=Round(lblTime.Font.Size/2);
+  lblTime.Left:=lblTime.Font.Size shr 2;
 end;
 
 procedure TfrmMain.UpdateWinRgn;
