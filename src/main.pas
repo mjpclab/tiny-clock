@@ -116,8 +116,13 @@ begin
 end;
 
 procedure TfrmMain.UpdateTime;
+var
+  hhmmss: string;
 begin
-  lblTime.Caption:=GetHhMmSs;
+  hhmmss := GetHhMmSs;
+  if Length(hhmmss) > 0 then begin
+    lblTime.Caption := hhmmss;
+  end;
 end;
 
 procedure TfrmMain.UpdateLayout;

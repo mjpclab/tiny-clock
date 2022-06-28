@@ -36,6 +36,7 @@ object frmMain: TfrmMain
     OnMouseUp = FormMouseUp
   end
   object timer: TTimer
+    Interval = 200
     OnTimer = timerTimer
     Left = 216
     Top = 8

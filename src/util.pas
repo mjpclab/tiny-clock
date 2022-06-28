@@ -11,28 +11,38 @@ function GetHhMmSs: string;
 
 implementation
 
-const Code0=Ord('0');
+const Code0 = Ord('0');
+var
+  lastHour, lastMinute, lastSecond: Word;
+
+  currentTime: TDateTime;
+  hour, minute, second, ms: Word;
+  timeBuf: array[0..7] of Char;
 
 function GetHhMmSs: string;
-var
-  t: TDateTime;
-  hour,minute,second: Word;
-  ms:Word;
-  buf: array[0..7] of Char;
 begin
-  t:=Now();
-  DecodeTime(t,hour,minute,second,ms);
+  currentTime:=Now();
+  DecodeTime(currentTime,hour,minute,second,ms);
 
-  buf[0]:=Chr((hour div 10) + Code0);
-  buf[1]:=Chr((hour mod 10) + Code0);
-  buf[2]:=':';
-  buf[3]:=Chr((minute div 10) + Code0);
-  buf[4]:=Chr((minute mod 10) + Code0);
-  buf[5]:=':';
-  buf[6]:=Chr((second div 10) + Code0);
-  buf[7]:=Chr((second mod 10) + Code0);
+  if (hour=lastHour) And (minute=lastMinute) And (second=lastSecond) then begin
+    Result:='';
+    Exit;
+  end;
 
-  Result:=buf;
+  lastHour := hour;
+  lastMinute := minute;
+  lastSecond := second;
+
+  timeBuf[0]:=Chr((hour div 10) + Code0);
+  timeBuf[1]:=Chr((hour mod 10) + Code0);
+  timeBuf[2]:=':';
+  timeBuf[3]:=Chr((minute div 10) + Code0);
+  timeBuf[4]:=Chr((minute mod 10) + Code0);
+  timeBuf[5]:=':';
+  timeBuf[6]:=Chr((second div 10) + Code0);
+  timeBuf[7]:=Chr((second mod 10) + Code0);
+
+  Result:=timeBuf;
 end;
 
 end.
