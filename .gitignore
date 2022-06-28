@@ -1,4 +1,3 @@
 /src/backup/
 /src/lib/
-/src/**/*.lps
-/src/**/*.exe
+/output
