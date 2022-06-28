@@ -123,12 +123,18 @@ end;
 procedure TfrmMain.UpdateLayout;
 var
   newWidth, newHeight : integer;
+  centerX, centerY: integer;
 begin
+  centerX := Left + (Width shr 1);
+  centerY := Top + (Height shr 1);
+
   newWidth := lblTime.Width + (lblTime.Font.Size shr 1);
   newHeight := lblTime.Height;
 
-  Width:=newWidth;
-  Height:=newHeight;
+  Left := centerX - (newWidth shr 1);
+  Top := centerY - (newHeight shr 1);
+  Width := newWidth;
+  Height := newHeight;
 
   lblTime.Left:=lblTime.Font.Size shr 2;
 end;
