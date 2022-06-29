@@ -1,21 +1,25 @@
 object frmMain: TfrmMain
-  Left = 263
+  Left = 320
   Height = 81
-  Top = 237
+  Top = 199
   Width = 289
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
   AlphaBlend = True
+  BorderIcons = []
   BorderStyle = bsNone
   Caption = 'frmMain'
   ClientHeight = 81
   ClientWidth = 289
   Color = clBlack
-  FormStyle = fsStayOnTop
+  FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
   OnMouseMove = FormMouseMove
   OnMouseUp = FormMouseUp
   Position = poScreenCenter
+  ShowInTaskBar = stNever
   LCLVersion = '2.2.2.0'
   object lblTime: TLabel
     Left = 0
@@ -27,8 +31,7 @@ object frmMain: TfrmMain
     Font.Color = 10092441
     Font.Height = -47
     Font.Name = 'Tahoma'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
+    Font.Pitch = fpFixed
     ParentColor = False
     ParentFont = False
     OnMouseDown = FormMouseDown
