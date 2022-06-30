@@ -18,6 +18,7 @@ type
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure FormMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure FormShow(Sender: TObject);
     procedure timerTimer(Sender: TObject);
   private
     moving: boolean;
@@ -53,6 +54,11 @@ begin
   UpdateTime;
   UpdateLayout;
   UpdateRoundCorner;
+end;
+
+procedure TfrmMain.FormShow(Sender: TObject);
+begin
+  UpdateLayout;
 end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
