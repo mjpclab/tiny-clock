@@ -53,7 +53,6 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   UpdateTime;
   UpdateLayout;
-  UpdateRoundCorner;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -85,13 +84,11 @@ begin
       begin
         lblTime.Font.Size:=lblTime.Font.Size+1;
         UpdateLayout;
-        UpdateRoundCorner;
       end;
     40: // down
       if lblTime.Font.Size > 5 then begin
         lblTime.Font.Size:=lblTime.Font.Size-1;
         UpdateLayout;
-        UpdateRoundCorner;
       end;
   end;
 end;
@@ -150,6 +147,8 @@ begin
   Height := newHeight;
 
   lblTime.Left:=hPadding shr 1;
+
+  UpdateRoundCorner;
 end;
 
 procedure TfrmMain.UpdateRoundCorner;
