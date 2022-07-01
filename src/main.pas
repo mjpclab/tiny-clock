@@ -135,11 +135,13 @@ procedure TfrmMain.UpdateLayout;
 var
   newWidth, newHeight : integer;
   centerX, centerY: integer;
+  hPadding: integer;
 begin
   centerX := Left + (Width shr 1);
   centerY := Top + (Height shr 1);
 
-  newWidth := lblTime.Width + (lblTime.Font.Size shr 1);
+  hPadding := (lblTime.Font.Size * Screen.PixelsPerInch div 96) shr 1;
+  newWidth := lblTime.Width + hPadding;
   newHeight := lblTime.Height;
 
   Left := centerX - (newWidth shr 1);
@@ -147,7 +149,7 @@ begin
   Width := newWidth;
   Height := newHeight;
 
-  lblTime.Left:=lblTime.Font.Size shr 2;
+  lblTime.Left:=hPadding shr 1;
 end;
 
 procedure TfrmMain.UpdateRoundCorner;
